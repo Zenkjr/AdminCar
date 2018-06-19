@@ -6,15 +6,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Danh Sách loại xe</h3>
-                    </div>
                     <div class="card">
                         <div class="card-header">
-                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#addnew">
-                                Thêm Mới
-                                <i class="fas fa-plus-circle fa-lg pl-1"></i>
-                            </button>
+                            <h3 class="box-title text-center">Danh Sách Khách hành liên hệ</h3>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
