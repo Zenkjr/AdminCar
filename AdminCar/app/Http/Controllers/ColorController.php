@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Color;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 //use function MongoDB\BSON\toJSON;
 
 class ColorController extends Controller
@@ -12,20 +13,19 @@ class ColorController extends Controller
     //
     public function index()
     {
-
-        $color = Color::all();
-        return view('admin.color.list')->with('color', $color);
+        return view('admin.color.list')->with('color', Color::orderBy('id', 'DESC')->paginate(10));
     }
 
     public function create()
     {
-//        return view('admin.clazz.form');
+        return view('admin.clazz.form');
     }
 
     public function store(request $request)
     {
         $color = new Color();
         $color->name = $request->get('name');
+        $request->session()->flash('add', 'Tạo màu thành công!');
         $color->save();
 
         return redirect('color/list');
@@ -51,7 +51,19 @@ class ColorController extends Controller
     public function destroy($id)
     {
         Color::destroy($id);
-        return redirect('color/list');
+    }
 
+
+    public function destroyCheck(request $request)
+    {
+//        return redirect('car/list');
+        if ($request->isMethod('post')) {
+            $arrayCheck = $request->input('checkName');
+            foreach ($arrayCheck as $item) {
+                Color::destroy($item);
+            }
+        }
+        $request->session()->flash('Delete', 'Xóa thành công!');
+        return redirect('/color/list');
     }
 }

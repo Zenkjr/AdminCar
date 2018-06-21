@@ -8,49 +8,59 @@ use App\Http\Controllers\Controller;
 
 class ClazzController extends Controller
 {
-    //
     public function index()
     {
-
-        $classCar = Clazz::all();
-        return view('admin.clazz.list')->with('clazzes', $classCar);
+        return view('admin.clazz.list')->with('clazzes', Clazz::orderBy('id', 'DESC')->paginate(10));
     }
 
     public function create()
     {
-//        return view('admin.clazz.form');
+        return view('admin.clazz.form');
     }
 
     public function store(request $request)
     {
-        $classCar = new Clazz();
-        $classCar->clazzes_name = $request->get('name');
-        $classCar->save();
+        $clazz = new Clazz();
+        $clazz->clazzes_name = $request->get('name');
+        $request->session()->flash('add', 'Thêm thành công!');
+        $clazz->save();
 
         return redirect('clazz/list');
     }
 
     public function edit($id)
     {
-        $classCar = Clazz::find($id);
-        return $classCar;
+        $clazz = Clazz::find($id);
+        return $clazz;
     }
 
     public function update(request $request, $id)
     {
 //        return 'oki';
         if ($request->isMethod('put')) {
-            $classCarUpdate = Clazz::find($id);
-            $classCarUpdate->clazzes_name = $request->get('name_Update');
-            $classCarUpdate->save();
-            return $classCarUpdate;
+            $clazzUpdate = Clazz::find($id);
+            $clazzUpdate->clazzes_name = $request->get('name_Update');
+            $clazzUpdate->save();
+            return $clazzUpdate;
         }
     }
 
     public function destroy($id)
     {
         Clazz::destroy($id);
-        return redirect('clazz/list');
+    }
 
+
+    public function destroyCheck(request $request)
+    {
+//        return redirect('car/list');
+        if ($request->isMethod('post')) {
+            $arrayCheck = $request->input('checkName');
+            foreach ($arrayCheck as $item) {
+                Clazz::destroy($item);
+            }
+        }
+        $request->session()->flash('Delete', 'Xóa thành công!');
+        return redirect('/clazz/list');
     }
 }

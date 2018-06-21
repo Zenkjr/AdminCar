@@ -24,40 +24,46 @@ Route::get('/admin', function () {
 Route::get('/car/list', 'CarController@index');
 Route::get('/car/create', 'CarController@create');
 Route::post('/car/store','CarController@store');
-Route::post('/car/{id}/edit','CarController@edit');
+Route::get('/car/{id}/edit','CarController@edit');
 Route::put('/car/{id}/update','CarController@update');
-Route::delete('/car/destroy/{id}','CarController@destroy');
+Route::post('/car/test','CarController@destroyCheck');
+Route::delete('/car/delete/{id}','CarController@destroy');
 
 
 Route::get('/brand/list', 'BrandController@index');
 Route::post('/brand/store','BrandController@store');
-Route::delete('/brand/destroy/{id}','BrandController@destroy');
+Route::delete('/brand/delete/{id}','BrandController@destroy');
 Route::get('/brand/{id}/edit','BrandController@edit');
 Route::put('/brand/update/{id}','BrandController@update');
-Route::post('/brand/destroyMany/','BrandController@destroyMany');
+Route::post('/brand/test','BrandController@destroyCheck');
 
 Route::get('/clazz/list', 'ClazzController@index');
 Route::post('/clazz/store','ClazzController@store');
-Route::delete('/clazz/destroy/{id}','ClazzController@destroy');
+Route::delete('/clazz/delete/{id}','ClazzController@destroy');
 Route::get('/clazz/{id}/edit','ClazzController@edit');
 Route::put('/clazz/update/{id}','ClazzController@update');
+Route::post('/clazz/test','ClazzController@destroyCheck');
+
 
 Route::get('/preorder/list', 'PreorderController@index');
 Route::post('/preorder/store','PreorderController@store');
 
 Route::get('/color/list', 'ColorController@index');
 Route::post('/color/store','ColorController@store');
-Route::delete('/color/destroy/{id}','ColorController@destroy');
+Route::delete('/color/delete/{id}','ColorController@destroy');
 Route::get('/color/{id}/edit','ColorController@edit');
 Route::put('/color/update/{id}','ColorController@update');
+Route::post('/color/test','ColorController@destroyCheck');
 
 
 
 Route::get('/country/list', 'CountryController@index');
 Route::post('/country/store','CountryController@store');
-Route::delete('/country/destroy/{id}','CountryController@destroy');
+Route::delete('/country/delete/{id}','CountryController@destroy');
 Route::get('/country/{id}/edit','CountryController@edit');
 Route::put('/country/update/{id}','CountryController@update');
+Route::post('/country/test','CountryController@destroyCheck');
+
 
 Route::get('/image/list', 'ImageController@index');
 Route::post('/image/store','ImageController@store');
@@ -68,6 +74,7 @@ Route::post('/stock/store','StockController@store');
 Route::get('article/list/','ArticleController@index');
 Route::get('article/create/','ArticleController@create');
 Route::post('article/store/','ArticleController@store');
-Route::post('article/{id}/edit','ArticleController@edit');
+Route::get('article/{id}/edit','ArticleController@edit');
 Route::put('article/{id}/update','ArticleController@update');
-Route::delete('article/destroy/{id}','ArticleController@destroy');
+Route::delete('article/delete/{id}','ArticleController@destroy');
+Route::post('/article/test','ArticleController@destroyCheck');

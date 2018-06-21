@@ -11,20 +11,19 @@ class CountryController extends Controller
     //
     public function index()
     {
-
-        $country = Country::all();
-        return view('admin.country.list')->with('country', $country);
+        return view('admin.country.list')->with('country', Country::orderBy('id', 'DESC')->paginate(10));
     }
 
     public function create()
     {
-//        return view('admin.clazz.form');
+        return view('admin.clazz.form');
     }
 
     public function store(request $request)
     {
         $country = new Country();
         $country->name = $request->get('name');
+        $request->session()->flash('add', 'Thêm Mới thành công!');
         $country->save();
 
         return redirect('country/list');
@@ -50,7 +49,19 @@ class CountryController extends Controller
     public function destroy($id)
     {
         Country::destroy($id);
-        return redirect('country/list');
+    }
 
+
+    public function destroyCheck(request $request)
+    {
+//        return redirect('car/list');
+        if ($request->isMethod('post')) {
+            $arrayCheck = $request->input('checkName');
+            foreach ($arrayCheck as $item) {
+                Country::destroy($item);
+            }
+        }
+        $request->session()->flash('Delete', 'Xóa thành công!');
+        return redirect('/country/list');
     }
 }
