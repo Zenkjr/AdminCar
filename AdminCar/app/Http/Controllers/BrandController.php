@@ -9,21 +9,17 @@ use App\Http\Controllers\Controller;
 class BrandController extends Controller
 {
     //
+
     public function index()
     {
-        $brands = Brand::all();
-        return view('admin.brand.list')->with('brands', $brands);
-    }
-
-    public function create()
-    {
-        return view('admin.brand.form');
+        return view('admin.brand.list')->with('brand', Brand::orderBy('id', 'DESC')->paginate(10));
     }
 
     public function store(request $request)
     {
         $brand = new Brand();
         $brand->name = $request->get('name');
+        $request->session()->flash('add', 'Thêm Mới thành công!');
         $brand->save();
 
         return redirect('brand/list');
@@ -49,17 +45,19 @@ class BrandController extends Controller
     public function destroy($id)
     {
         Brand::destroy($id);
-        return redirect('brand/list');
-
     }
 
-    public function destroyMany(request $request)
+
+    public function destroyCheck(request $request)
     {
-//        $brand = new Brand();
-        $idDelete = $request->input('check-car');
-
-
-        return $idDelete;
-//        return redirect('brand/list');
+//        return redirect('car/list');
+        if ($request->isMethod('post')) {
+            $arrayCheck = $request->input('checkName');
+            foreach ($arrayCheck as $item) {
+                Brand::destroy($item);
+            }
+        }
+        $request->session()->flash('Delete', 'Xóa thành công!');
+        return redirect('/brand/list');
     }
 }

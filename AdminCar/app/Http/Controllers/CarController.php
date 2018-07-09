@@ -7,6 +7,7 @@ use App\Car;
 use App\Clazz;
 use App\Color;
 use App\Country;
+use App\Http\Requests\UploadRequest;
 use App\Image;
 use App\Stock;
 use Illuminate\Http\Request;
@@ -20,14 +21,23 @@ class CarController extends Controller
     public function index()
     {
 
-        $cars = Car::all();
+        $cars = Car::paginate(10);
         foreach ($cars as $car) {
-            $idImagesShow = $car->id;
-            $img = Image::where('car_id', $idImagesShow)->first();
+            $idShow = $car->id;
+            $img = Image::where('car_id', $idShow)->first();
+            $status = Stock::where('car_id', $idShow)->first();
+            $car->status = $status['status'];
             $car->img = $img['url'];
         }
-
         return view('admin.car.list')->with('cars', $cars);
+    }
+
+    public function show($id)
+    {
+        $cars = Car::find($id);
+        $img = Image::select('*')->where('car_id', $id)->get();
+        return view('admin.car.show')->with(['cars' => $cars,
+            'image' => $img]);
     }
 
     public function edit($id)
@@ -51,7 +61,7 @@ class CarController extends Controller
                 'cars_edit' => $cars_edit,
                 'title' => 'Sủa lại thông tin xe',
                 'method' => 'put',
-                'action' => '/car/'.$id.'/update'
+                'action' => '/car/' . $id . '/update'
             ]);
         }
     }
@@ -68,29 +78,27 @@ class CarController extends Controller
             'brand_id' => $brand_id,
             'clazz_id' => $clazz_id,
             'title' => 'Thêm xe mới',
-            'car_stock'=> new Stock(),
-            'cars_edit'=>new Car(),
-            'action'=>'car/store',
-            'method'=>'post'
+            'car_stock' => new Stock(),
+            'cars_edit' => new Car(),
+            'action' => '/car/store',
+            'method' => 'post'
         ]);
     }
 
-    public function store(request $request)
+    public function store(UploadRequest $request)
     {
-        $request->validate([
-            'name' => 'bail|required|unique:posts|max:55',
-            'brand_id' => 'required',
-            'year' => 'bail|required|max:2018',
-            'seat' => 'bail|required|max:20',
-            'engine' => 'required',
-            'horse_power' => 'required',
-            'tire_size' => 'required',
-            'clazz_id' => 'required',
-            'note'=>'required|max:300',
-            'first_plate'=>'required|max:300|date',
-
-
-        ]);
+//        $request->validate([
+//            'name' => 'bail|required|unique:posts|max:55',
+//            'brand_id' => 'required',
+//            'year' => 'bail|required|max:2018',
+//            'seat' => 'bail|required|max:20',
+//            'engine' => 'required',
+//            'horse_power' => 'required',
+//            'tire_size' => 'required',
+//            'clazz_id' => 'required',
+//            'note'=>'required|max:300',
+//            'first_plate'=>'required|max:300|date',
+//        ]);
 //        add info to table ca
         $cars = new Car();
         $cars->name = $request->get('name');
@@ -118,16 +126,31 @@ class CarController extends Controller
         $stock->color_id = $request->get('color_id');
         $stock->price = $request->get('price');
         $stock->save();
+        $request->session()->flash('add', 'Thêm Mới thành công!');
 
 //        add info to table image
-        $images = new Image();
-        $file = $request->file('img_url');
-        if (File::exists($file)) {
-            $file->store('public/upload');
-            $images->url = "/storage/upload/" . $file->hashName();
+//        $images = new Image();
+        $images = $request->file('img_url');
+
+        foreach ($images as $photo) {
+            $url = $photo->store('public/upload');
+            if (File::exists($photo)) {
+                $url = "/storage/upload/" . $photo->hashName();
+                echo $url;
+            }
+            Image::create([
+                'car_id' => $cars->id,
+                'url' => $url
+            ]);
         }
-        $images->car_id = $cars->id;
-        $images->save();
+//        $images = new Image();
+//        $file = $request->file('img_url');
+//        if (File::exists($file)) {
+//            $file->store('public/upload');
+//            $images->url = "/storage/upload/" . $file->hashName();
+//        }
+//        $images->car_id = $cars->id;
+//        $images->save();
         return redirect('/car/list');
     }
 
@@ -135,6 +158,7 @@ class CarController extends Controller
     {
         $cars = Car::find($id);
         $stock = Stock::Where('car_id', $id)->first();
+        $request->session()->flash('update', 'Sửa thành công!');
 
         $cars->name = $request->get('name');
         $cars->brand_id = $request->get('brand_id');
@@ -164,7 +188,23 @@ class CarController extends Controller
 
     public function destroy($id)
     {
-        Car::destroy($id);
+        $destroyId = Stock::Where('car_id', $id)->first();
+        $destroyId->status = '0';
+        $destroyId->save();
+    }
+
+    public function destroyCheck(request $request)
+    {
+//        return redirect('car/list');
+        if ($request->isMethod('post')) {
+            $arrayCheck = $request->input('checkName');
+            foreach ($arrayCheck as $item) {
+                $destroyId = Stock::Where('car_id', $item)->first();
+                $destroyId->status = '0';
+                $destroyId->save();
+            }
+        }
+        $request->session()->flash('Delete', 'Xóa thành công!');
         return redirect('/car/list');
     }
 }

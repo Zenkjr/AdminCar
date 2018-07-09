@@ -17,7 +17,9 @@
     {{-- table link css --}}
     <link rel="stylesheet" type="text/css" href="{{asset('/extra-libs/multicheck/multicheck.css')}}">
     <link href="{{asset('/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">--}}
+{{--    <link href="{{asset('/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">--}}
+
+{{--<link rel="stylesheet" type="text/css" href="{{asset('/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">--}}
 
     <!-- Custom CSS -->
     <link href="{{asset('/css/style.min.css')}}" rel="stylesheet">

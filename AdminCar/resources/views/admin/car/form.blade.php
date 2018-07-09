@@ -7,6 +7,16 @@
                 <div class="card-header">
                     <h3 class="box-title text-center">{{$title}}</h3>
                 </div>
+                @if (count($errors) > 0)
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+                @if($action == null)
+                    {{$action = '/create/store'}}
+                    @endif
                 <form class="form-horizontal" action="{{$action}}" enctype="multipart/form-data" method="post">
                     {{csrf_field()}}
                     @if($method == 'put')
@@ -157,13 +167,17 @@
                                     </select>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Hình ảnh</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" name="img_url" class="custom-file-input">
-                                        <label class="custom-file-label">Chọn file</label>
-                                    </div>
+                                    {{--<div class="input-group-prepend">--}}
+                                        {{--<span class="input-group-text">Hình ảnh</span>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="custom-file">--}}
+                                        {{--<input type="file" name="img_url" class="custom-file-input" multiple/>--}}
+                                        {{--<label class="custom-file-label">Chọn file</label>--}}
+                                    {{--</div>--}}
+                                    <label class="">Chọn file</label>
+
+                                    <input type="file" name="img_url[]" multiple = ""/>
+
                                 </div>
 
                             </div>
