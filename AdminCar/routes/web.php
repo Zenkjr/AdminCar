@@ -56,8 +56,6 @@ Route::get('/color/{id}/edit','ColorController@edit');
 Route::put('/color/update/{id}','ColorController@update');
 Route::post('/color/test','ColorController@destroyCheck');
 
-
-
 Route::get('/country/list', 'CountryController@index');
 Route::post('/country/store','CountryController@store');
 Route::delete('/country/delete/{id}','CountryController@destroy');
@@ -71,6 +69,10 @@ Route::post('/image/store','ImageController@store');
 
 Route::get('/stock/list', 'StockController@index');
 Route::post('/stock/store','StockController@store');
+Route::get('/stock/{id}/edit','StockController@edit');
+Route::put('/stock/{id}/update','StockController@update');
+Route::post('/stock/test','StockController@destroyCheck');
+
 
 Route::get('article/list/','ArticleController@index');
 Route::get('article/create/','ArticleController@create');

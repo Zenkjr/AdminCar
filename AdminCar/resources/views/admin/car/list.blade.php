@@ -77,18 +77,18 @@
                                                     </div>
                                                 </td>
                                                 <td>{{$item->name}}</td>
-                                                <td>{{$item->brand_id}}</td>
+                                                <td>{{$item->brand}}</td>
                                                 <td>{{$item->year}}</td>
                                                 <td>{{$item->seat}}</td>
                                                 <td>{{$item->engine}}</td>
                                                 <td>{{$item->horse_power}}</td>
                                                 <td>{{$item->tire_size}}</td>
-                                                <td>{{$item->clazz_id}}</td>
+                                                <td>{{$item->clazz}}</td>
                                                 <td>{{$item->status}}</td>
                                                 <td>{{$item->note}}</td>
                                                 <td>
                                                     <a href="/car/{{$item->id}}/edit"
-                                                       class="btn btn-info btn-edit text-white">Sửa
+                                                            class="btn btn-info btn-edit text-white">Sửa
                                                     </a>
                                                 </td>
                                                 <td>

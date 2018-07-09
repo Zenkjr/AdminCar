@@ -24,12 +24,19 @@ class CarController extends Controller
         $cars = Car::paginate(10);
         foreach ($cars as $car) {
             $idShow = $car->id;
+            $brandId = $car->brand_id;
+            $clazz = $car->clazz_id;
             $img = Image::where('car_id', $idShow)->first();
             $status = Stock::where('car_id', $idShow)->first();
+            $brand = Brand::where('id', $brandId)->first();
+            $clazzName = Clazz::where('id', $clazz)->first();
+            $car->clazz = $clazzName['clazzes_name'];
+            $car->brand = $brand['name'];
             $car->status = $status['status'];
             $car->img = $img['url'];
         }
         return view('admin.car.list')->with('cars', $cars);
+//        return $cars;
     }
 
     public function show($id)
@@ -87,18 +94,6 @@ class CarController extends Controller
 
     public function store(UploadRequest $request)
     {
-//        $request->validate([
-//            'name' => 'bail|required|unique:posts|max:55',
-//            'brand_id' => 'required',
-//            'year' => 'bail|required|max:2018',
-//            'seat' => 'bail|required|max:20',
-//            'engine' => 'required',
-//            'horse_power' => 'required',
-//            'tire_size' => 'required',
-//            'clazz_id' => 'required',
-//            'note'=>'required|max:300',
-//            'first_plate'=>'required|max:300|date',
-//        ]);
 //        add info to table ca
         $cars = new Car();
         $cars->name = $request->get('name');
@@ -143,14 +138,6 @@ class CarController extends Controller
                 'url' => $url
             ]);
         }
-//        $images = new Image();
-//        $file = $request->file('img_url');
-//        if (File::exists($file)) {
-//            $file->store('public/upload');
-//            $images->url = "/storage/upload/" . $file->hashName();
-//        }
-//        $images->car_id = $cars->id;
-//        $images->save();
         return redirect('/car/list');
     }
 
@@ -195,7 +182,6 @@ class CarController extends Controller
 
     public function destroyCheck(request $request)
     {
-//        return redirect('car/list');
         if ($request->isMethod('post')) {
             $arrayCheck = $request->input('checkName');
             foreach ($arrayCheck as $item) {
