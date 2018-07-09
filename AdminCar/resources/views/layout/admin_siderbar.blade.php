@@ -45,7 +45,7 @@
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-folder-image"></i><span class="hide-menu">Quản lý ảnh</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class=" fas fa-list"></i><span class="hide-menu">Danh sách ảnh của xe</span></a></li>
+                        <li class="sidebar-item"><a href="/image/list" class="sidebar-link"><i class=" fas fa-list"></i><span class="hide-menu">Danh sách ảnh của xe</span></a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-bank"></i><span class="hide-menu">Xe trong kho </span></a>

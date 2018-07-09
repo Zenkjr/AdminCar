@@ -166,19 +166,12 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="input-group mb-3">
-                                    {{--<div class="input-group-prepend">--}}
-                                        {{--<span class="input-group-text">Hình ảnh</span>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="custom-file">--}}
-                                        {{--<input type="file" name="img_url" class="custom-file-input" multiple/>--}}
-                                        {{--<label class="custom-file-label">Chọn file</label>--}}
-                                    {{--</div>--}}
-                                    <label class="">Chọn file</label>
-
-                                    <input type="file" name="img_url[]" multiple = ""/>
-
-                                </div>
+                                @if($method != 'put')
+                                    <div class="input-group mb-3">
+                                        <label class="">Chọn file</label>
+                                        <input type="file" name="img_url[]" multiple = ""/>
+                                    </div>
+                                @endif
 
                             </div>
                         </div>
