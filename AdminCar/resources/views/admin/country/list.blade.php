@@ -74,6 +74,7 @@
                                                         delete
                                                     </a>
                                                 </td>
+
                                             </tr>
 
                                         @endforeach

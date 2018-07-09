@@ -7,6 +7,13 @@
                 <div class="card-header">
                     <h3 class="box-title text-center">{{$title}}</h3>
                 </div>
+                @if (count($errors) > 0)
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 @if($action == null)
                     {{$action = '/create/store'}}
                     @endif

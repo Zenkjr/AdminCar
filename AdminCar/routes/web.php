@@ -28,6 +28,7 @@ Route::get('/car/{id}/edit','CarController@edit');
 Route::put('/car/{id}/update','CarController@update');
 Route::post('/car/test','CarController@destroyCheck');
 Route::delete('/car/delete/{id}','CarController@destroy');
+Route::get('/car/{id}/show','CarController@show');
 
 
 Route::get('/brand/list', 'BrandController@index');

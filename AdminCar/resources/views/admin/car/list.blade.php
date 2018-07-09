@@ -55,6 +55,8 @@
                                         <th>Chú thích</th>
                                         <th>Thay Đổi</th>
                                         <th>Xóa</th>
+                                        <th>Xem Thêm</th>
+
                                     </tr>
                                     </thead>
                                     <div class="card-body">
@@ -91,6 +93,11 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-danger btn-delete" id="delete-{{$item->id}}">
+                                                        delete
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="/car/{{$item->id}}/show" class="btn btn-danger btn-delete">
                                                         delete
                                                     </a>
                                                 </td>

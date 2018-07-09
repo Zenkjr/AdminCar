@@ -7,6 +7,7 @@ use App\Car;
 use App\Clazz;
 use App\Color;
 use App\Country;
+use App\Http\Requests\UploadRequest;
 use App\Image;
 use App\Stock;
 use Illuminate\Http\Request;
@@ -29,6 +30,14 @@ class CarController extends Controller
             $car->img = $img['url'];
         }
         return view('admin.car.list')->with('cars', $cars);
+    }
+
+    public function show($id)
+    {
+        $cars = Car::find($id);
+        $img = Image::select('*')->where('car_id', $id)->get();
+        return view('admin.car.show')->with(['cars' => $cars,
+            'image' => $img]);
     }
 
     public function edit($id)
@@ -76,7 +85,7 @@ class CarController extends Controller
         ]);
     }
 
-    public function store(request $request)
+    public function store(UploadRequest $request)
     {
 //        $request->validate([
 //            'name' => 'bail|required|unique:posts|max:55',
@@ -120,14 +129,28 @@ class CarController extends Controller
         $request->session()->flash('add', 'Thêm Mới thành công!');
 
 //        add info to table image
-        $images = new Image();
-        $file = $request->file('img_url');
-        if (File::exists($file)) {
-            $file->store('public/upload');
-            $images->url = "/storage/upload/" . $file->hashName();
+//        $images = new Image();
+        $images = $request->file('img_url');
+
+        foreach ($images as $photo) {
+            $url = $photo->store('public/upload');
+            if (File::exists($photo)) {
+                $url = "/storage/upload/" . $photo->hashName();
+                echo $url;
+            }
+            Image::create([
+                'car_id' => $cars->id,
+                'url' => $url
+            ]);
         }
-        $images->car_id = $cars->id;
-        $images->save();
+//        $images = new Image();
+//        $file = $request->file('img_url');
+//        if (File::exists($file)) {
+//            $file->store('public/upload');
+//            $images->url = "/storage/upload/" . $file->hashName();
+//        }
+//        $images->car_id = $cars->id;
+//        $images->save();
         return redirect('/car/list');
     }
 
