@@ -19,7 +19,7 @@ class CreateCarsTable extends Migration
             $table->integer('brand_id');
             $table->year('year');
             $table->smallInteger('seat');
-            $table->smallInteger('engine');
+            $table->string('engine');
             $table->smallInteger('horse_power');
             $table->smallInteger('tire_size');
             $table->integer('clazz_id');
