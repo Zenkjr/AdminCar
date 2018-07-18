@@ -36,15 +36,31 @@ class CarController extends Controller
             $car->img = $img['url'];
         }
         return view('admin.car.list')->with('cars', $cars);
-//        return $cars;
     }
 
     public function show($id)
     {
-        $cars = Car::find($id);
+        $car = Car::find($id);
+        $brand = Brand::where('id', $car->brand_id)->first();
+        $clazz = Clazz::where('id', $car->clazz_id)->first();
+        $stock = Stock::where('car_id', $car->id)->first();
+        $country = Country::where('id', $stock->country_id)->first();
+        $color = Color::where('id', $stock->color_id)->first();
+        $car->price = $stock['price'];
+        $car->brand = $brand['name'];
+        $car->clazz = $clazz['clazzes_name'];
+        $car->status = $stock['status'];
+        $car->country = $country['name'];
+        $car->color = $color['name'];
+        $car->first_plate = $stock['first_plate'];
+        $car->regis_expiry = $stock['regis_expiry'];
         $img = Image::select('*')->where('car_id', $id)->get();
-        return view('admin.car.show')->with(['cars' => $cars,
+        return view('admin.car.show')->with(['car' => $car,
             'image' => $img]);
+//        $cars = Car::find($id);
+//        $img = Image::select('*')->where('car_id', $id)->get();
+//        return view('admin.car.show')->with(['cars' => $cars,
+//            'image' => $img]);
     }
 
     public function edit($id)

@@ -17,6 +17,12 @@
     {{-- table link css --}}
     <link rel="stylesheet" type="text/css" href="{{asset('/extra-libs/multicheck/multicheck.css')}}">
     <link href="{{asset('/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
+    {{--show detail car--}}
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/home.css')}}">
+    <link rel="stylesheet" href="{{asset('css/show/showInfo.css')}}">
+    <script src="{{asset('js/show/showInfo.js')}}"></script>
+
 {{--    <link href="{{asset('/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">--}}
 
 {{--<link rel="stylesheet" type="text/css" href="{{asset('/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">--}}
@@ -151,7 +157,11 @@
 <script src="{{asset('/extra-libs/multicheck/jquery.multicheck.js')}}"></script>
 <script src="{{asset('/extra-libs/multicheck/datatable-checkbox-init.js')}}"></script>
 <script src="{{asset('/extra-libs/DataTables/datatables.min.js')}}"></script>
-
+{{--<script src="{{asset('js/app.js')}}"></script>--}}
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace('summary-ckeditor');
+</script>
 
 <!-- Charts js Files -->
 {{--<script src="{{asset('/libs/flot/excanvas.js')}}"></script>--}}

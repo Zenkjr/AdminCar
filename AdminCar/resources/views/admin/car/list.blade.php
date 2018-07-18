@@ -52,7 +52,6 @@
                                         <th>lốp xe</th>
                                         <th>Loại xe</th>
                                         <th>Trạng thái</th>
-                                        <th>Chú thích</th>
                                         <th>Thay Đổi</th>
                                         <th>Xóa</th>
                                         <th>Xem Thêm</th>
@@ -84,8 +83,13 @@
                                                 <td>{{$item->horse_power}}</td>
                                                 <td>{{$item->tire_size}}</td>
                                                 <td>{{$item->clazz}}</td>
-                                                <td>{{$item->status}}</td>
-                                                <td>{{$item->note}}</td>
+                                                @if($item->status == 0)
+                                                    <td>hết hàng</td>
+                                                @elseif($item->status == 1)
+                                                    <td>Đang bán</td>
+                                                @else
+                                                    <td>Còn trong kho</td>
+                                                @endif
                                                 <td>
                                                     <a href="/car/{{$item->id}}/edit"
                                                             class="btn btn-info btn-edit text-white">Sửa
@@ -98,7 +102,7 @@
                                                 </td>
                                                 <td>
                                                     <a href="/car/{{$item->id}}/show" class="btn btn-danger btn-delete">
-                                                        delete
+                                                        Xem Thêm
                                                     </a>
                                                 </td>
                                             </tr>
@@ -127,7 +131,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

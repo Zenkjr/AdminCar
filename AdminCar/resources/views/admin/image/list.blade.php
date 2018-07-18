@@ -14,11 +14,8 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>id xe</th>
                                 <th>ảnh xe</th>
-                                <th>Được tạo tại</th>
-                                <th>Được cập nhật</th>
-                                <th>Hoạt Động</th>
-
                             </tr>
                             </thead>
                             @foreach($image as $item)
@@ -26,9 +23,19 @@
                                 <tbody>
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->clazzes_name}}</td>
-                                    <td>{{$item->created_at}}</td>
-                                    <td>{{$item->updated_at}}</td>
+                                    <td>{{$item->car_id}}</td>
+
+                                    <td>
+                                        <div class="card"
+                                             style="background-image: url('{{$item->url}}'); background-size: cover; width: 100px; height: 60px;">
+                                        </div>
+                                    </td>
+                                    @for ($i = 1; $i < count($image); $i++)
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100 img-big"
+                                                 src="{{$image[$i]->url}}">
+                                        </div>
+                                    @endfor
                                     <td>
                                         <button type="button" class="btn btn-info">Sửa</button>
                                     </td>
@@ -39,6 +46,9 @@
                                 </tbody>
                             @endforeach
                         </table>
+                        <div class="form-group float-right">
+                            {{ $image->links()}}
+                        </div>
                     </div>
                     <div class="box-footer">
                         <div>
@@ -64,7 +74,8 @@
                                         <div class="modal-body">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                    <input type="text" name="clazzes_name" class="form-control" id="clazzes_name"
+                                                    <input type="text" name="clazzes_name" class="form-control"
+                                                           id="clazzes_name"
                                                            placeholder="Loại xe" style="border-radius: 15px">
                                                 </div>
                                             </div>

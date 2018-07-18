@@ -72,6 +72,8 @@ Route::post('/stock/store','StockController@store');
 Route::get('/stock/{id}/edit','StockController@edit');
 Route::put('/stock/{id}/update','StockController@update');
 Route::post('/stock/test','StockController@destroyCheck');
+Route::delete('/stock/delete/{id}','StockController@destroy');
+Route::get('/stock/show','StockController@show');
 
 
 Route::get('article/list/','ArticleController@index');
@@ -81,3 +83,11 @@ Route::get('article/{id}/edit','ArticleController@edit');
 Route::put('article/{id}/update','ArticleController@update');
 Route::delete('article/delete/{id}','ArticleController@destroy');
 Route::post('/article/test','ArticleController@destroyCheck');
+
+Route::resource('cars', 'FontEndController');
+Route::get('/mua-xe', 'FontEndController@muaxe');
+Route::get('/lienhe', 'FontEndController@lienhe');
+Route::get('/detail', 'FontEndController@detail');
+Route::post('/post/lienhe', 'FontEndController@contentLienHe');
+
+Route::get('/tin-tuc', 'FontEndController@article');
