@@ -48,10 +48,10 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Động cơ</span>
+                                        <span class="input-group-text">Nhiên liệu</span>
                                     </div>
-                                    <input value="{{$cars_edit->engine }}" type="number" name="engine"
-                                           placeholder="Động cơ" class="form-control rounded">
+                                    <input value="{{$cars_edit->engine }}" type="text" name="engine"
+                                           placeholder="Nhiên liệu" class="form-control rounded">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">

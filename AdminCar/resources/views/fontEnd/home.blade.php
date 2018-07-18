@@ -2,19 +2,25 @@
 @section('title', 'An Thịnh AUTO')
 
 @section('body')
-    <div class="container mt-3">
+    <div class="container-fluid mt-3">
         <!-- The slideshow -->
         <div id="mySlide" class="carousel slide" data-ride="carousel">
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://bonbanh.com.vn/uploads/users/5680/salon/l_1334723981.jpg">
+                    <img src="{{asset('images/vintage.jpg')}}">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://bonbanh.com.vn/uploads/users/5680/salon/l_1322472621.jpg">
+                    <img src="{{asset('images/audi_t.jpg')}}">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://bonbanh.com.vn/uploads/users/5680/salon/l_1322472742.jpg">
+                    <img src="{{asset('images/homeIma.jpg')}}">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('images/homeImages.jpg')}}">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('images/homeImas.jpg')}}">
                 </div>
             </div>
 
@@ -27,32 +33,46 @@
             </a>
         </div>
         <!-- The end slideshow -->
+    </div>
+    <div class="container mt-3">
 
         <!-- Brand -->
-        <div class="container-fluid text-center mt-5">
+        <div class="text-center mt-5">
             <h2>HÃNG NỔI BẬT</h2>
             <br>
             <div class="row slideanim">
                 <div class="col-sm-4">
-                    <img class="img-fluid" src="http://www.pumpedinc.com/placeholders/logos/audi-logo.png">
+                    <a href="/brand/4">
+                        <img class="img-fluid" src="http://www.pumpedinc.com/placeholders/logos/audi-logo.png">
+                    </a>
                 </div>
                 <div class="col-sm-4">
-                    <img class="img-fluid" src="http://www.carlogos.org/logo/Mazda-logo-1997-1920x1080.png">
+                    <a href="/brand/8">
+                        <img class="img-fluid" src="http://www.carlogos.org/logo/Mazda-logo-1997-1920x1080.png">
+                    </a>
                 </div>
                 <div class="col-sm-4">
-                    <img class="img-fluid" src="http://interbrand.com/assets/00000001492.png">
+                    <a href="/brand/3">
+                        <img class="img-fluid" src="http://interbrand.com/assets/00000001492.png">
+                    </a>
                 </div>
             </div>
             <br>
             <div class="row slideanim">
                 <div class="col-sm-4">
-                    <img class="img-fluid" src="https://www.accutechauto.co/wp-content/uploads/2017/12/hyundai.png">
+                    <a href="/brand/7">
+                        <img class="img-fluid" src="https://www.accutechauto.co/wp-content/uploads/2017/12/hyundai.png">
+                    </a>
                 </div>
                 <div class="col-sm-4">
-                    <img class="img-fluid" src="http://interbrand.com/assets/00000001585.png">
+                    <a href="/brand/2">
+                        <img class="img-fluid" src="http://interbrand.com/assets/00000001585.png">
+                    </a>
                 </div>
                 <div class="col-sm-4">
-                    <img class="img-fluid" src="http://interbrand.com/assets/00000001574.png">
+                    <a href="/brand/1">
+                        <img class="img-fluid" src="http://interbrand.com/assets/00000001574.png">
+                    </a>
                 </div>
             </div>
         </div>

@@ -89,5 +89,6 @@ Route::get('/mua-xe', 'FontEndController@muaxe');
 Route::get('/lienhe', 'FontEndController@lienhe');
 Route::get('/detail', 'FontEndController@detail');
 Route::post('/post/lienhe', 'FontEndController@contentLienHe');
+Route::get('/brand/{id}', 'FontEndController@showBrand');
 
 Route::get('/tin-tuc', 'FontEndController@article');

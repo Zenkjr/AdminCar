@@ -182,7 +182,18 @@ class FontEndController extends Controller
         $preo->save();
         return view('fontEnd.lienhe');
     }
-
+    public function showBrand($id){
+        $cars = Car::where('brand_id',$id)->paginate(12);
+        foreach ($cars as $car) {
+            $clazz = Clazz::where('id', $car->clazz_id)->first();
+            $stock = Stock::where('car_id', $car->id)->first();
+            $img = Image::where('car_id', $car->id)->first();
+            $car->price = $stock['price'];
+            $car->clazz = $clazz['clazzes_name'];
+            $car->img = $img['url'];
+        }
+        return view('fontEnd.mua-xe')->with("cars", $cars);
+    }
     public function detail()
     {
         return view('fontEnd.detail');
