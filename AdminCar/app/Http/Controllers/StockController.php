@@ -12,6 +12,7 @@ use App\Stock;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 
 
 class StockController extends Controller
@@ -22,8 +23,8 @@ class StockController extends Controller
         $stock = Stock::paginate(10);
         foreach ($stock as $stockCar) {
             $idColor = $stockCar->color_id;
-            $carId= $stockCar->car_id;
-            $idCountry= $stockCar->country_id;
+            $carId = $stockCar->car_id;
+            $idCountry = $stockCar->country_id;
             $color = Color::where('id', $idColor)->first();
             $country = Country::where('id', $idCountry)->first();
             $img = Image::where('car_id', $carId)->first();
@@ -34,8 +35,8 @@ class StockController extends Controller
             $stockCar->color = $color['name'];
         }
         return view('admin.stock.list')->with('stock', $stock);
-
     }
+
     public function edit($id)
     {
 
@@ -60,6 +61,25 @@ class StockController extends Controller
                 'action' => '/stock/' . $id . '/update'
             ]);
         }
+    }
+
+    public function show(request $request)
+    {
+        $stock = Stock::where('status', $request->get('choise_status'))->paginate(10);
+        foreach ($stock as $stockCar) {
+            $idColor = $stockCar->color_id;
+            $carId = $stockCar->car_id;
+            $idCountry = $stockCar->country_id;
+            $color = Color::where('id', $idColor)->first();
+            $country = Country::where('id', $idCountry)->first();
+            $img = Image::where('car_id', $carId)->first();
+            $carName = Car::where('id', $carId)->first();
+            $stockCar->name = $carName['name'];
+            $stockCar->country = $country['name'];
+            $stockCar->img = $img['url'];
+            $stockCar->color = $color['name'];
+        }
+        return view('admin.stock.list')->with('stock', $stock->appends(Input::except('page')));
     }
 
     public function update(request $request, $id)
@@ -94,6 +114,14 @@ class StockController extends Controller
 
         return redirect('/stock/list');
     }
+
+    public function destroy($id)
+    {
+        $destroyId = Stock::Where('car_id', $id)->first();
+        $destroyId->status = '0';
+        $destroyId->save();
+    }
+
     public function destroyCheck(request $request)
     {
         if ($request->isMethod('post')) {
@@ -107,39 +135,4 @@ class StockController extends Controller
         $request->session()->flash('Delete', 'Xóa thành công!');
         return redirect('/stock/list');
     }
-//    public function create()
-//    {
-//        return view('admin.car.form');
-//    }
-//
-//    public function store(request $request)
-//    {
-//        $images = new Image();
-//        $cars = new Car();
-//        $cars->name = $request->get('name');
-//        $cars->brand_id = $request->get('brand_id');
-//        $cars->year = $request->get('year');
-//        $cars->seat = $request->get('seat');
-//        $cars->engine = $request->get('engine');
-//        $cars->horse_power = $request->get('horse_power');
-//        $cars->tire_size = $request->get('tire_size');
-//        $cars->clazz_id = $request->get('clazz_id');
-//        $cars->note = $request->get('note');
-//        $cars->save();
-//
-//        $file = $request->file('img_url');
-//        if (File::exists($file)) {
-//            $file->store('public/upload');
-//            $images->url = "/storage/upload/" . $file->hashName();
-//        }
-//        $images->car_id = $cars->id;
-//        $images->save();
-//        return redirect('/car/list');
-//    }
-//    public function edit($id)
-//    {
-////        $color = Color::find($id);
-////        return view('admin.color.list')->with('color',$color);
-////return $color;
-//    }
 }
