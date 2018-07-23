@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class BrandSeeder extends Seeder
+class BrandsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,7 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        Illuminate\Support\Facades\DB::table('brands')->insert([
+        DB::table('brands')->insert([
             [
                 'name' => 'TOYOTA'
             ],

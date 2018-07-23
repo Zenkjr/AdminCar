@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ColorSeeder extends Seeder
+class ClazzsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,27 +12,30 @@ class ColorSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('colors')->insert([
+        DB::table('clazzs')->insert([
             [
-                'name' => 'Đen'
+                'name' => 'SUV'
             ],
             [
-                'name' => 'Trắng'
+                'name' => 'Sedan'
             ],
             [
-                'name' => 'Nâu'
+                'name' => 'Hatchback'
             ],
             [
-                'name' => 'Đỏ'
+                'name' => 'Pickup'
             ],
             [
-                'name' => 'Vàng'
+                'name' => 'Van'
             ],
             [
-                'name' => 'Xanh'
+                'name' => 'CUV'
             ],
             [
-                'name' => 'Xám'
+                'name' => 'Coupe'
+            ],
+            [
+                'name' => 'MPV'
             ]
         ]);
     }

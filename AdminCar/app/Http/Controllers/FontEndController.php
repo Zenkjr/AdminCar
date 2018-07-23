@@ -17,6 +17,18 @@ use Illuminate\Support\Facades\DB;
 
 class FontEndController extends Controller
 {
+    public function getByBrandId($id) {
+        $cars = Car::where('brand_id', $id)->paginate(4);
+        foreach ($cars as $car) {
+            $clazz = Clazz::where('id', $car->clazz_id)->first();
+            $stock = Stock::where('car_id', $car->id)->first();
+            $img = Image::where('car_id', $car->id)->first();
+            $car->price = $stock['price'];
+            $car->clazz = $clazz['clazzes_name'];
+            $car->img = $img['url'];
+        }
+        return $cars;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,44 +36,10 @@ class FontEndController extends Controller
      */
     public function index()
     {
-        $brandAudi = Car::where('brand_id', 1)->paginate(4);
-        $brandMazda = Car::where('brand_id', 2)->paginate(4);
-        $brandBmw = Car::where('brand_id', 3)->paginate(4);
-        $brandHyundai = Car::where('brand_id', 4)->paginate(4);
-        foreach ($brandAudi as $audi) {
-            $clazz = Clazz::where('id', $audi->clazz_id)->first();
-            $stock = Stock::where('car_id', $audi->id)->first();
-            $img = Image::where('car_id', $audi->id)->first();
-            $audi->price = $stock['price'];
-            $audi->clazz = $clazz['clazzes_name'];
-            $audi->img = $img['url'];
-        }
-        foreach ($brandMazda as $mazda) {
-            $clazz = Clazz::where('id', $mazda->clazz_id)->first();
-            $stock = Stock::where('car_id', $mazda->id)->first();
-            $img = Image::where('car_id', $mazda->id)->first();
-            $mazda->price = $stock['price'];
-            $mazda->clazz = $clazz['clazzes_name'];
-            $mazda->img = $img['url'];
-
-        }
-        foreach ($brandBmw as $bmw) {
-            $clazz = Clazz::where('id', $bmw->clazz_id)->first();
-            $stock = Stock::where('car_id', $bmw->id)->first();
-            $img = Image::where('car_id', $bmw->id)->first();
-            $bmw->price = $stock['price'];
-            $bmw->clazz = $clazz['clazzes_name'];
-            $bmw->img = $img['url'];
-        }
-        foreach ($brandHyundai as $hyundai) {
-            $clazz = Clazz::where('id', $hyundai->clazz_id)->first();
-            $stock = Stock::where('car_id', $hyundai->id)->first();
-            $img = Image::where('car_id', $hyundai->id)->first();
-            $hyundai->price = $stock['price'];
-            $hyundai->clazz = $clazz['clazzes_name'];
-            $hyundai->img = $img['url'];
-        }
-//        return $brandAudi;
+        $brandAudi = $this->getByBrandId(1);
+        $brandMazda = $this->getByBrandId(2);
+        $brandBmw = $this->getByBrandId(3);
+        $brandHyundai = $this->getByBrandId(4);
         return view('fontEnd.home')->with(['brandAudi' => $brandAudi, 'brandMazda' => $brandMazda, 'brandBmw' => $brandBmw, 'brandHyundai' => $brandHyundai]);
     }
 
@@ -193,10 +171,6 @@ class FontEndController extends Controller
             $car->img = $img['url'];
         }
         return view('fontEnd.mua-xe')->with("cars", $cars);
-    }
-    public function detail()
-    {
-        return view('fontEnd.detail');
     }
 
     public function article()
