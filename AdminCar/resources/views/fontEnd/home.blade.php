@@ -83,7 +83,7 @@
         <br>
         <div class="manufacturer-header mt-3">
             <img class="img-fluid" src="http://www.pumpedinc.com/placeholders/logos/audi-logo.png" width="100px">
-            <span><a href="#">Xem thêm ></a></span>
+            <span><a href="/brand/4">Xem thêm ></a></span>
         </div>
         <div class="row">
             @foreach($brandAudi as $audi)
@@ -115,7 +115,7 @@
 
         <div class="manufacturer-header mt-5">
             <img class="img-fluid" src="http://www.carlogos.org/logo/Mazda-logo-1997-1920x1080.png" width="100px">
-            <span><a href="#">Xem thêm ></a></span>
+            <span><a href="/brand/8">Xem thêm ></a></span>
         </div>
         <div class="row">
             @foreach($brandMazda as $mazda)
@@ -147,7 +147,7 @@
 
         <div class="manufacturer-header mt-5">
             <img class="img-fluid" src="http://interbrand.com/assets/00000001492.png" width="100px">
-            <span><a href="#">Xem thêm ></a></span>
+            <span><a href="/brand/3">Xem thêm ></a></span>
         </div>
         <div class="row">
             @foreach($brandBmw as $bmw)
@@ -179,7 +179,7 @@
 
         <div class="manufacturer-header mt-5">
             <img class="img-fluid" src="https://www.accutechauto.co/wp-content/uploads/2017/12/hyundai.png" width="100px">
-            <span><a href="#">Xem thêm ></a></span>
+            <span><a href="/brand/7">Xem thêm ></a></span>
         </div>
         <div class="row">
             @foreach($brandHyundai as $hyundai)
