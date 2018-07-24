@@ -92,3 +92,4 @@ Route::post('/post/lienhe', 'FontEndController@contentLienHe');
 Route::get('/brand/{id}', 'FontEndController@showBrand');
 
 Route::get('/tin-tuc', 'FontEndController@article');
+Route::get('tin-tuc/{id}', 'FontEndController@articleDetail');

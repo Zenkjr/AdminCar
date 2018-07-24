@@ -178,4 +178,9 @@ class FontEndController extends Controller
         $articles = Article::orderBy('id', 'DESC')->paginate(5);
         return view('fontEnd.article')->with('articles', $articles);
     }
+
+    public function articleDetail($id) {
+        $article = Article::find($id);
+        return view('fontEnd.article-detail')->with('article', $article);
+    }
 }

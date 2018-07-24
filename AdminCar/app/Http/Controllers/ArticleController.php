@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
@@ -27,9 +28,16 @@ class ArticleController extends Controller
     public function store(request $request)
     {
         $articleNew = new Article();
+//        $file = $request->file('img');
+//        if (File::exists($file)) {
+//            $file->store('public/uploaded');
+//            $articleNew->img = "storage/uploaded/" . $file->hashName();
+//        }
         $articleNew->article_title = $request->get('article_title');
         $articleNew->description = $request->get('description');
+        $articleNew->img = $request->get('img');
         $articleNew->content = $request->get('content');
+        $articleNew->source = $request->get('source');
         $request->session()->flash('add', 'Thêm Mới thành công!');
         $articleNew->save();
         return redirect('/article/list');

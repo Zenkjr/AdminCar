@@ -11,13 +11,13 @@
                     @foreach($articles as $article)
                         <article class="article-item type-text">
                             <p class="article-thumbnail">
-                                <a href="#" title="{{$article->article_title}}">
+                                <a href="tin-tuc/{{$article->id}}" title="{{$article->article_title}}">
                                     <img src="{{$article->img}}" alt="{{$article->article_title}}">
                                 </a>
                             </p>
                             <header>
                                 <p class="article-title">
-                                    <a href="#">{{$article->article_title}}</a>
+                                    <a href="tin-tuc/{{$article->id}}">{{$article->article_title}}</a>
                                 </p>
                                 <p class="article-meta">
 								<span class="article-publish">

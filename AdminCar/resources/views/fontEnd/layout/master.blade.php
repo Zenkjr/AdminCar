@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
+    <link rel="stylesheet" href="{{asset('css/show/showInfo.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/show/showInfo.js')}}"></script>
     <title>@yield('title')</title>
 </head>
 <body>
 <div class="container-fluid bg-light">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="col-xl-3 col-2">
                 <a class="navbar-brand" href="/cars">
                     <img src="https://www.capitalcarcare.co.uk/images/ccc_logo.PNG" width="150px">
