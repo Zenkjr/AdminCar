@@ -22,7 +22,8 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2" for="">Mô tả</label>
-                                    <input class="col-md-9" type="text" name="description" class="form-control form-control"
+                                    <input class="col-md-9" type="text" name="description"
+                                           class="form-control form-control"
                                            value="{{$article->description}}">
                                 </div>
                                 <div class="form-group row">
@@ -31,8 +32,9 @@
                                            value="{{$article->img}}">
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-2"for="">Nội dung</label>
-                                    <textarea class="form-control" name="content" id="summary-ckeditor">{{$article->content}}</textarea>
+                                    <label class="col-md-2" for="">Nội dung</label>
+                                    <textarea class="form-control" name="content"
+                                              id="summary-ckeditor">{{$article->content}}</textarea>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2" for="">Nguồn</label>
