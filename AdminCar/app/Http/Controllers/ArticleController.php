@@ -35,7 +35,7 @@ class ArticleController extends Controller
 //        }
         $articleNew->article_title = $request->get('article_title');
         $articleNew->description = $request->get('description');
-        $articleNew->img = $request->get('img');
+        $articleNew->image = $request->get('image');
         $articleNew->content = $request->get('content');
         $articleNew->source = $request->get('source');
         $request->session()->flash('add', 'Thêm Mới thành công!');
@@ -64,6 +64,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $article->article_title =  $request->get('article_title');
         $article->description = $request->get('description');
+        $article->image = $request->get('image');
         $article->content = $request->get('content');
         $request->session()->flash('update', 'Sửa thành công!');
         $article->save();

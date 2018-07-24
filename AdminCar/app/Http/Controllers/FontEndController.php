@@ -36,10 +36,10 @@ class FontEndController extends Controller
      */
     public function index()
     {
-        $brandAudi = $this->getByBrandId(1);
-        $brandMazda = $this->getByBrandId(2);
+        $brandAudi = $this->getByBrandId(4);
+        $brandMazda = $this->getByBrandId(8);
         $brandBmw = $this->getByBrandId(3);
-        $brandHyundai = $this->getByBrandId(4);
+        $brandHyundai = $this->getByBrandId(7);
         return view('fontEnd.home')->with(['brandAudi' => $brandAudi, 'brandMazda' => $brandMazda, 'brandBmw' => $brandBmw, 'brandHyundai' => $brandHyundai]);
     }
 
