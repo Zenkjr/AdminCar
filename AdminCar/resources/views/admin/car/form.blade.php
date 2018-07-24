@@ -150,9 +150,8 @@
                                     </div>
                                     <select class="custom-select rounded" name="status">
                                         <option value="{{$car_stock->status}}" selected>Choose...</option>
-                                        <option value="1">Bán</option>
-                                        <option value="2">Hết Hàng</option>
-                                        <option value="3">Còn Trong kho</option>
+                                        <option value="1">Đang bán</option>
+                                        <option value="0">Hết Hàng</option>
                                     </select>
                                 </div>
                                 <div class="input-group mb-3">

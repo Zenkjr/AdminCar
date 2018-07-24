@@ -12,7 +12,7 @@
                         <article class="article-item type-text">
                             <p class="article-thumbnail">
                                 <a href="tin-tuc/{{$article->id}}" title="{{$article->article_title}}">
-                                    <img src="{{$article->img}}" alt="{{$article->article_title}}">
+                                    <img src="{{$article->image}}" alt="{{$article->article_title}}">
                                 </a>
                             </p>
                             <header>

@@ -173,7 +173,7 @@ img.img-small {
     height: 81px;
 }
 
-/* =-=-=-=-=-=-= Article  =-=-=-=-=-=-= */
+/* =-=-=-=-=-=-= Article list  =-=-=-=-=-=-= */
 .article-list h3 {
     font-family: sans-serif;
     font-size: 1.3em;
@@ -264,6 +264,8 @@ article a:hover {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+/* =-=-=-=-=-=-= Article detail  =-=-=-=-=-=-= */
 h1.article-title {
     font-family: "Noto Serif", serif;
     font-size: 2rem;
@@ -310,6 +312,10 @@ h1.article-title {
     float: left;
     width: 100%;
     margin: 0 0 14px;
+}
+.article-conten p img {
+    width: 100%;
+    height: auto;
 }
 .article-source {
     float: right;

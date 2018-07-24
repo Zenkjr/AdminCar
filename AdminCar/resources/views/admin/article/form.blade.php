@@ -28,8 +28,8 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2" for="">Link ảnh đại diện</label>
-                                    <input class="col-md-9" type="text" name="img" class="form-control form-control"
-                                           value="{{$article->img}}">
+                                    <input class="col-md-9" type="text" name="image" class="form-control form-control"
+                                           value="{{$article->image}}">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2" for="">Nội dung</label>

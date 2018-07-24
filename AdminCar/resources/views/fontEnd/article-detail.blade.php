@@ -12,8 +12,7 @@
                 <p class="article-description px-3">{{$article->description}}</p>
 
                 <div class="article-conten px-3">
-                    <img src="../{{$article->img}}" title="{{$article->article_title}}" alt="{{$article->article_title}}">
-                    <br><br>{!! $article->content !!}
+                    {!! $article->content !!}
                 </div>
                 <div class="article-source">
                     <p>Nguồn: <strong>{{$article->source}}</strong></p>
