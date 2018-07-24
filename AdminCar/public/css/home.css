@@ -264,7 +264,60 @@ article a:hover {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+h1.article-title {
+    font-family: "Noto Serif", serif;
+    font-size: 2rem;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -1px!important;
+}
+.article-publish {
+    padding-left: 3px;
+    margin: 5px 0 0px;
+    float: left;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #999;
+    line-height: 18px;
+    -webkit-font-smoothing: antialiased;
+    float: left;
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.article-description {
+    font-size: 18px;
+    line-height: 30px;
+    font-family: "Noto Serif", serif;
+    font-weight: bold;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    clear: both;
+    float: left;
+    width: 100%;
+    margin: 0 0 14px;
+}
+.article-conten {
+    font-size: 18px;
+    line-height: 26px;
+    float: left;
+    width: 100%;
+    position: relative;
+    font-family: "Noto Serif", serif;
+    clear: both;
+    float: left;
+    width: 100%;
+    margin: 0 0 14px;
+}
+.article-source {
+    float: right;
+    padding-right: 10px;
+    font-style: italic;
+}
 
+/* =-=-=-=-=-=-= Khung phải  =-=-=-=-=-=-= */
 .com-hotline.with-support {
     margin-bottom: 14px;
 }
